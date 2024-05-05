@@ -1,36 +1,54 @@
-
-// Note: Do not write @Enumerated annotation above CountryName in this model.
 package com.driver.model;
 
-import javax.persistence.*;
+import org.springframework.data.repository.cdi.Eager;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "country")
 public class Country {
+    private int countryId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    //    @Enumerated(EnumType.STRING)
     private CountryName countryName;
-
     private String code;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn
+    private User user;
+
+    @OneToOne
+    @JoinColumn
     private ServiceProvider serviceProvider;
 
-    @JoinColumn
-    @OneToOne
-    private User user;
+
+    public Country() {
+    }
 
     public Country(CountryName countryName, String code) {
         this.countryName = countryName;
         this.code = code;
     }
 
-    public Country() {
+    public Country(int countryId,
+                   ServiceProvider serviceProvider,
+                   User user,
+                   String code,
+                   CountryName countryName) {
+        this.countryId = countryId;
+        this.serviceProvider = serviceProvider;
+        this.user = user;
+        this.code = code;
+        this.countryName = countryName;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     public CountryName getCountryName() {
@@ -41,20 +59,12 @@ public class Country {
         this.countryName = countryName;
     }
 
-    public int getId() {
-        return id;
+    public User getUser() {
+        return user;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public ServiceProvider getServiceProvider() {
@@ -65,11 +75,11 @@ public class Country {
         this.serviceProvider = serviceProvider;
     }
 
-    public User getUser() {
-        return user;
+    public String getCode() {
+        return code;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCode(String code) {
+        this.code = code;
     }
 }
