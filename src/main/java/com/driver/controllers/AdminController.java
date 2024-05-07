@@ -33,13 +33,8 @@ public class AdminController {
 
     @PostMapping("/addCountry")
     public ResponseEntity<Void> addCountry(@RequestParam int serviceProviderId, @RequestParam String countryName) {
-        try {
-            ServiceProvider serviceProvider = adminService.addCountry(serviceProviderId, countryName);
-            return ResponseEntity.ok().build();
-        } catch (CountryNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Country not found");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+       ServiceProvider serviceProvider = adminService.addCountry(serviceProviderId, countryName);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 }
