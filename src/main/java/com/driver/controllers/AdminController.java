@@ -1,5 +1,5 @@
 package com.driver.controllers;
-
+package com.driver.services.exceptions;
 import com.driver.model.Admin;
 import com.driver.model.ServiceProvider;
 import com.driver.services.impl.AdminServiceImpl;
