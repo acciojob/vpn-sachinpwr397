@@ -1,5 +1,5 @@
 package com.driver.controllers;
-
+import com.driver.model.*;
 import com.driver.model.Admin;
 import com.driver.model.ServiceProvider;
 import com.driver.services.AdminService;
